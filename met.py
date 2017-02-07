@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os, sys, csv
 import requests
-import simplejson as json
+import json
 
 data_url = 'https://media.githubusercontent.com/media/metmuseum/openaccess/master/MetObjects.csv'
 local_data_path = 'data.csv'
@@ -15,7 +15,7 @@ def get_subdirectory(accession_number):
     ./_data/03/16/84/
     """
     components = accession_number.zfill(padding)
-    sub_dir = os.path.join(data_path, components[0:2],components[2:4], components[4:6])
+    sub_dir = os.path.join(data_path, components[0:2], components[2:4], components[4:6], components[6:8])
     os.makedirs(sub_dir, exist_ok=True)
     return sub_dir
 
