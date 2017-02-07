@@ -28,12 +28,15 @@ def get_met_records():
 
     # Download CSV if not exists
     if not os.path.exists(local_data_path):
-        print('does not exist, downloading...')
+        print('Data file missing, downloading current version from Github...')
         r = requests.get(data_url, stream=True)
         with open(local_data_path, 'w') as f:
             for chunk in r.iter_content(chunk_size=10240): 
                 if chunk: # filter out keep-alive new chunks
                     f.write(chunk)
+    else:
+        print('Data already downloaded, will use it...')
+
 
     # Parse CSV, and convert to a list of dictionaries,
     # using first row as dictionary keys
